@@ -1,0 +1,119 @@
+html {
+    box-sizing: border-box;
+    font-size: 10px;
+    background: #00fff2;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Amatic SC', cursive;
+  }
+  button {
+    padding: 0;
+    border: none;
+    font-family: "Architects Daughter", cursive;
+    text-align: center;
+    font-size:2rem;
+    text-decoration: none;
+    padding-bottom: 3px;
+    border-radius: 5px;
+    background-color: #fbff00;
+  }
+  button span {
+    background: #f1f5f8;
+    display: block;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: 2px solid hsl(198, 1%, 29%);
+  }
+  .btn{
+      text-align: center;
+      padding: 1%;
+      transition-duration: 0.4s;
+  }
+  button:hover {
+    background-color: #23ec09; 
+    color: white;
+  }
+  .level{
+      color:rgb(218, 31, 235);
+      font-size: medium;
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 6rem;
+    line-height: 1;
+    margin-bottom: 0;
+  }
+  
+  .score {
+    background: rgba(255,255,255,0.2);
+    padding: 0 3rem;
+    line-height: 1;
+    border-radius: 1rem;
+  }
+  
+  .game {
+    width: 600px;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+  }
+  
+  .hole {
+    flex: 1 0 33.33%;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .hole:after {
+    display: block;
+    background: url(dirt.svg) bottom center no-repeat;
+    background-size: contain;
+    content: '';
+    width: 100%;
+    height:70px;
+    position: absolute;
+    z-index: 2;
+    bottom: -30px;
+  }
+  
+  .mole {
+    background: url(mole.svg) bottom center no-repeat;
+    background-size: 60%;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    height: 100%;
+    transition:all 0.4s;
+  }
+  
+  .hole.up .mole {
+    top: 0;
+  }
+  #footer {
+    background-color: rgba(3, 3, 3, 0);
+    color:rgb(255, 255, 255);
+    font-family: 'Lobster', cursive;
+    font-size: 1em;
+    margin: 2%;
+    text-align: center;
+    
+  }
+#footer a{
+  color:rgb(252, 4, 4);
+  padding: 2%;
+}
+#footer a:hover{
+  color: rgb(17, 0, 253);
+}
+#footer p{
+  padding-top: 15px;
+}

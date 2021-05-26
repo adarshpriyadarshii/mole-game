@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/7b522f7ee5.js" crossorigin="anonymous"></script>
+    <link rel=icon href=android-chrome-512x512.png>
+    <link rel="stylesheet" href="style.css">
+    <title>Whack-a-mole!</title>
+  </head>
+  <body>
+     <h1>Whack-a-mole!<span class="score">0</span></h1> 
+     <div class="btn">
+         <div class="level">
+            <input type="radio" id="easy" name="level" value="200">
+            <label >Easy</label>
+            <input type="radio" id="med" name="level" value="500">
+            <label >Medium</label>
+            <input type="radio" id="hard" name="level" value="800">
+            <label >Hard</label>
+         </div>
+        <button onClick="startGame()">Start!</button>
+     </div>
+     
+    <div class="game">
+        <div class="hole hole1">
+            <div class="mole"></div>
+        </div>
+        <div class="hole hole2">
+            <div class="mole"></div>
+        </div>
+        <div class="hole hole3">
+            <div class="mole"></div>
+        </div>
+        <div class="hole hole4">
+            <div class="mole"></div>
+        </div>
+        <div class="hole hole5">
+            <div class="mole"></div>
+        </div>
+        <div class="hole hole6">
+            <div class="mole"></div>
+        </div>
+    </div>
+    
+    <footer id="footer">
+    
+        <h2>Contact Me</h2>
+          <a href="https://www.facebook.com/adarshpriyadarshii"><i class="social fab fa-facebook fa-2x"></i></a>
+          <a href="https://www.instagram.com/adarshpriyadarshii/?fbclid=IwAR11VTWkKQKLbxH5440HBabgsjXQinU2hdQrYBZd1Z1pcgp17_5OfPy1hJ0"><i class="social fab fa-instagram fa-2x"></i></a>
+          <a href="https://www.linkedin.com/in/adarshpriyadarshi/"><i class="social fab fa-linkedin fa-2x"></i></a>
+          <a href="https://github.com/adarshpriyadarshii"><i class="social fab fa-github-square fa-2x"></i></a>
+          <a href="mailto:adarsh_p@ce.iitr.ac.in"><i class="social fas fa-envelope fa-2x"></i></a>
+        
+        <p>Made with <i class="fas fa-heart "></i> Adarsh Priyadarshi</p>
+    
+      </footer>
+
+    
+    <script >
+      const holes=document.querySelectorAll('.hole');
+      const scoreBoard=document.querySelector('.score');  
+      const moles=document.querySelectorAll('.mole');
+      let lastHole;
+      let timeUp = false;
+      let score = 0;
+      let lvl = 200;
+      if(document.getElementById('easy').checked) {
+            lvl=200;
+        }else if(document.getElementById('med').checked) {
+            lvl=500;
+        }else if(document.getElementById('hard').checked) {
+            lvl=800;
+        }
+     
+      function randomTime(min,max){
+          return Math.round(Math.random()*(max - min)+min);
+      }
+
+      function randomHole(holes) {
+            const idx = Math.floor(Math.random() * holes.length);
+            const hole = holes[idx];
+            if (hole === lastHole) {
+            console.log('lol');
+            return randomHole(holes);
+            }
+            lastHole = hole;
+            return hole;
+        }
+
+        function peep() {
+            const time = randomTime(lvl, 1000);
+            const hole = randomHole(holes);
+            hole.classList.add('up');
+            setTimeout(() => {
+            hole.classList.remove('up');
+            if (!timeUp) peep();
+            }, time);
+        }
+
+        function startGame() {
+            scoreBoard.textContent = 0;
+            timeUp = false;
+            score = 0;
+            peep();
+            setTimeout(() => timeUp = true, 10000)
+        }
+
+        function bonk(e) {
+            if(!e.isTrusted) return; 
+            score++;
+            this.parentNode.classList.remove('up');
+            scoreBoard.textContent = score;
+        }
+
+        moles.forEach(mole => mole.addEventListener('click', bonk));
+
+      
+    </script>
+
+    
+  </body>
+</html>
